@@ -1,61 +1,86 @@
-// Button listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults)
-document.getElementById('loan-form').addEventListener('Clear', startOver)
-
-//Calculate Results
-function calculateResults(e){
-  console.log('Calculating...');
+// Get values from the page
+// starts or controller function
+function getValues(){
+  //get values from the page
   // Form variables
-  const amount = document.getElementById('amount');
-  const interest = document.getElementById('interest');
-  const years = document.getElementById('years');
-  const monthlyPayment = document.getElementById('monthly-payment');
-  const totalPayment = document.getElementById('total-payment');
-  const totalInterest = document.getElementById('total-interest');
-  const extraPayment = document.getElementById('extra')
+  let balence = parseFloat(document.getElementById('amount').value);
+  let interestRate = parseFloat(document.getElementById('interest').value/100/12);
+  let terms = parseInt(document.getElementById('months').value);
 
-  const principal = parseFloat(amount.value);
-  const calculatedInterest = parseFloat(interest.value) / 100 / 12;
-  const calculatedPayments = parseFloat(years.value) * 12;
 
-  //Compute monthly payment
-  const x = Math.pow(1+calculatedInterest, calculatedPayments);
-  const monthly = (principal * x * calculatedInterest)/(x-1);
+ // parse the numbers
+  let div = document.getElementById("Result");
+  
+  //clear out the div
+  div.innerHTML = "";
+ 
+  let balVal = validateInputs(balance);
+  let intrVal = validateInputs(interestRate);
+  
+ if (balVal && intrVal) {
+  div.innerHTML += amort(balance, interestRate, terms);
+ }
+ else{
+  div.innerHTML += "Please only enter numbers.";
+ }
 
-  if(isFinite(monthly)){
-      monthlyPayment.value = monthly.toFixed(2);
-      totalPayment.value =(monthly * calculatedPayments).toFixed(2);
-      totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
-  } else {
-      showError('Please check your numbers');
-
-  }
-  e.preventDefault();
+ 
 }
-// Show Error
-function showError(error){
-  // Creat a div
-  const errorDiv = document.createElement('div');
 
-  // Get elements
-  const card = document.querySelector('.card');
-  const heading = document.querySelector('.heading');
+for (let count = 0; count < terms; ++count)
+	{ 
+		//in-loop interest amount holder
+		let interest = 0;
+		
+		//in-loop monthly principal amount holder
+		let monthlyPrincipal = 0;
+		
+		//start a new table row on each loop iteration
+		result += "<tr align=center>";
+		
+		//display the month number in col 1 using the loop count variable
+		result += "<td>" + (count + 1) + "</td>";
+		
+		
+		//code for displaying in loop balance
+		result += "<td> $" + balance.toFixed(2) + "</td>";
+		
+		//calc the in-loop interest amount and display
+		interest = balance * monthlyRate;
+		result += "<td> $" + interest.toFixed(2) + "</td>";
+		
+		//calc the in-loop monthly principal and display
+		monthlyPrincipal = payment - interest;
+		result += "<td> $" + monthlyPrincipal.toFixed(2) + "</td>";
+		
+		//end the table row on each iteration of the loop	
+		result += "</tr>";
+		
+		//update the balance for each loop iteration
+		balance = balance - monthlyPrincipal;		
+	}
+	
+	//Final piece added to return string before returning it - closes the table
+    result += "</table>";
+	
+	//returns the concatenated string to the page
+    return result;
 
+//generate numbers
+//display or view function
+function displayNumbers(){
 
-  // Add class
-  errorDiv.className = 'alert alert-danger';
-
-  // Create text node and append to div
-  errorDiv.appendChild(document.createTextNode(error));
-
-  // Insert error above heading
-  card.insertBefore(errorDiv, heading);
-
-  // Clear error after 3 seconds
-  setTimeout(clearError, 3000);
 }
-// Clear error function
 
-function clearError(){
-  document.querySelector('.alert').remove();
+function validateInputs(value)
+{
+	//some code here to validate inputs
+	if ((value == null) || (value == ""))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }

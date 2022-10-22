@@ -87,8 +87,8 @@
                     <div class="form-group mt-3">
                         <input type="number" class="form-control" id="months" placeholder="Term (months)">
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Calculate" class="text-right btn btn-dark mt-3">
+                    <div class="form-group justify-content-end">
+                        <button id="btnSubmit" type="button" class="mt-1 btn btn-danger btn-lg">Buzz It!</button>
                     </div>
                  </form>
             </div>
@@ -186,7 +186,9 @@
  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
 </script>
 <script src="js/site.js"></script>
-
+<script>
+    document.getElementById("btnSubmit").addEventListener("click",getValues);
+</script>
 
 
 </body>

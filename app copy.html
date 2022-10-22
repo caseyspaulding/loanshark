@@ -83,33 +83,24 @@
                             <div id="loan_src" class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1">$</span>
-                                    <input type="number" class="form-control" id="amount" placeholder="Loan Amount">
+                                    <input type="number" class="form-control" id="principal" placeholder="Loan Amount">
                                 </div>
                             </div>
                             <div class="form-group mt-3">
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon">#</span> 
-                                    <input type="number" class="form-control" id="months" placeholder="Number of Months">
+                                    <input type="number" class="form-control" id="terms" placeholder="Number of Months">
                                 </div>
                                 
                             </div>
                             <div class="form-group mt-3">
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon">%</span> 
-                                    <input type="number" class="form-control" id="rate" placeholder="Annual Interest Rate">
-                                </div>
-                                
+                                    <input type="number" class="form-control" id="interest" placeholder="Annual Interest Rate">
+                                </div>  
                             </div>
-                            <div class="form-group mt-3">
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon">$</span> 
-                                    <input type="number" class="form-control" id="extra" placeholder="Extra Monthly Payment">
-                                </div>
-                                
-                            </div>
-                    
                             <div class="form-group">
-                                <input type="submit" value="Calculate" class="btn btn-success btn-block text-right mt-2">
+                                <button id="btnSubmit" type="button" value="Calculate" class="btn btn-success btn-block text-right mt-2">Buzz It!</button>
                             </div> 
                         </div>
                     </div> 
@@ -117,29 +108,16 @@
         </div>
         <div id="loan_info" class="col col-md-6 mb-3">
             <div>
-                <h1 class="display-5 pt-2 pb-2">Results
-                </h1>
-        <div class="form-group mt-1">
-            <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">Monthly Payment</span>
-            <input type="number" class="form-control" id="monthly-payment" disabled>
+                <h1 class="display-5 pt-2 pb-2">Results</h1>
+                <form>
+                    <fieldset>
+                    <legend>Outputs</legend>
+                        <div id="Result"></div>
+                    </fieldset>						
+                </form>		
+            </div>
         </div>
-    </div>
-    <div class="form-group mt-3">
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">Total Payment</span>
-            <input type="number" class="form-control" id="total-payment" disabled>
-        </div> 
-        </div>       
-    </div>    
-    <div id="table_header" class="border row-12 h-25 m-1 mt-2">
-        table header
-    </div>
-    <div id="table" class="border row-12">
-        table
-        l;;klj
-    </div>
-</div>
+        
  
 <!--Loader Here --><!--
 <div id="loading">
@@ -174,7 +152,9 @@
  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
 </script>
 <script src="js/shark.js"></script>
-
+<script>
+    document.getElementById("btnSubmit").addEventListener("click",getValues);
+</script>
 
 
 </body>

@@ -1,53 +1,79 @@
 // Button listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults)
-
 //Calculate Results
-function calculateResults(e){
+function getValues(){
     console.log('Calculating...');
     // Form variables
-    const amount = document.getElementById('amount');
-    const interest = document.getElementById('interest');
-    const months = document.getElementById('months');
-    const monthlyPayment = document.getElementById('monthly-payment');
-    const totalPayment = document.getElementById('total-payment');
-    const totalInterest = document.getElementById('total-interest');
+    let amount = document.getElementById('amount');
+    let interest = document.getElementById('interest');
+    let months = document.getElementById('months');
+    let monthlyPayment = document.getElementById('monthly-payment');
+    let totalPayment = document.getElementById('total-payment');
+    let totalInterest = document.getElementById('total-interest');
     
 
     // parse the numbers
 
-    const principal = parseFloat(amount.value);
-    const calculatedInterest = parseFloat(interest.value) / 100 / 12;
-    const calculatedPayments = parseFloat(months.value);
-    
+    let principal = parseFloat(amount.value);
+    let calculatedInterest = parseFloat(interest.value) / 100 / 12;
+    let calculatedPayments = parseFloat(months.value);
 
     //Compute monthly payment
-    const x = Math.pow(1+calculatedInterest, calculatedPayments);
-    const monthly = (principal * x * calculatedInterest)/(x-1);
+    let x = Math.pow(1+calculatedInterest, calculatedPayments);
+    let monthly = (principal * x * calculatedInterest)/(x-1);
 
     if(isFinite(monthly)){
         monthlyPayment.value = monthly.toFixed(2);
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
     } else {
-        showError('Please check your numbers');
+        alert('Please check your numbers');
 
     }
-    e.preventDefault();
+
+    
+
+
 }
 
 
-/*
-function table(){
-    while (principal > 0) {
-        monthlyPayment +- 1;
-        amount*12
+function table(principal, calculatedInterest, calculatedPayments, months){
+    let returnArray = [];
+
+
+    /*var result = "Loan amount: $" + amount.toFixed(2) +  "<br />" + 
+        "Interest rate: " + (interest*100).toFixed(2) +  "%<br />" +
+        "Number of months: " + months + "<br />" +
+        "Monthly payment: $" + monthly.toFixed(2) + "<br />" +
+        "Total paid: $" + (payment * months).toFixed(2) + "<br /><br />";
+
+    results += "<table border='1'><tr><th>Month #</th><th>Balance</th>" + 
+        "<th>Interest</th><th>Principal</th>";
+*/
+    
+    //Loop 360 times
+    for (let i = 0; i < months; i++) {
+        
+        let interest = 0;
+        let monthlyPrincipal = 0;
+
+        if(principal > 0){
+            let calculatedPrincipal = calculatedPayments - principal;
+            returnArray.push(calculatedPrincipal);
+            returnArray.push(calculatedPayments);
+            returnArray.push(calculatedInterest);
+            returnArray.push(calculatedPrincipal);
+
+        }else{
+            returnArray.push(i);
+        }
     }
+    returnArray;
 }
 
 // CF * Loop over the array and create a tablerow for each item using template.
 
 
-function displayData(Array) {
+function displayData(tbArray) {
 
     //get the table body element from the page
     let tablebody = document.getElementById("results");
@@ -58,18 +84,18 @@ function displayData(Array) {
     //clear table first
     tablebody.innerHTML = "";
 
-    for (let index = 0; index < Array.length; index++) {
+    for (let index = 0; index < tbArray.length; index += 6) {
 
         let tableRow = document.importNode(templateRow.content, true)
 
         //grab use the to put into array
         let rowCols = tableRow.querySelectorAll("td");
-        rowCols[0].textContent = *Data*[i];
-        rowCols[1].textContent = *Data*[i+1];
-        rowCols[2].textContent = *Data*[i+2];
-        rowCols[3].textContent = *Data*[i+3];
-        rowCols[4].textContent = *Data*[i+4];
-        rowCols[5].textContent = *Data*[i+5];
+        rowCols[0].textContent = tbData[i];
+        rowCols[1].textContent = tbData*[i+1];
+        rowCols[2].textContent = tbData*[i+2];
+        rowCols[3].textContent = tbData*[i+3];
+        rowCols[4].textContent = tbData*[i+4];
+        rowCols[5].textContent = tbData*[i+5];
 
         tablebody.appendChild(tableRow);
 
@@ -77,7 +103,6 @@ function displayData(Array) {
 
 
 }
-*/
 // Show Error
 function showError(error){
     // Creat a div
