@@ -72,58 +72,70 @@
     <div class="row gy-2 row-cols-1 row-cols-md-2">
         <div class="col col-md-12">
             <div class="text-center border ">
-                <h1>Loan Shark Calculator</h1>
+                <h1 class="heading display-5 pb-3">Loan Shark Calculator</h1>  
             </div>
         </div>
         <div class="col col-md-6 mb-3">
             <div id="loan_src" class="border">
-                LOAN SRC
-                <form name="loan_form">
-                    <div class="row m-1">
-                        Loan Amount:  <input type="text" name="loan_amt">
-                    </div>
-                    <div class="row m-1">
-                        Number of Months <input type="text" name="months"></span>
-                    </div>
-                    <div class="row m-1">
-                        Annual Interest Rate:<br><span style="font-size:80%">(ex. 2.5% = 2.5)</span>  <input type="text" name="rate">
-                    </div>
-                    <div class="row m-1">
-                        Extra Monthly Payment:  <input type="text" name="extra">
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="button" onclick="validate()" value="Calculate" class="btn btn-success mt-2 mb-2">Calculate</button>
-                            <div class="col-6">
-                                <button type="button" onclick="startOver()" value="Start Over" class="text-right btn btn-danger">Clear</button>
+                <form id="loan-form">
+                    <div class="form-group">
+                        <form id="loan-form">
+                            <div id="loan_src" class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                    <input type="number" class="form-control" id="amount" placeholder="Loan Amount">
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon">#</span> 
+                                    <input type="number" class="form-control" id="months" placeholder="Number of Months">
+                                </div>
+                                
+                            </div>
+                            <div class="form-group mt-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon">%</span> 
+                                    <input type="number" class="form-control" id="rate" placeholder="Annual Interest Rate">
+                                </div>
+                                
+                            </div>
+                            <div class="form-group mt-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon">$</span> 
+                                    <input type="number" class="form-control" id="extra" placeholder="Extra Monthly Payment">
+                                </div>
+                                
+                            </div>
+                    
+                            <div class="form-group">
+                                <input type="submit" value="Calculate" class="btn btn-success btn-block text-right mt-2">
                             </div> 
                         </div>
-                    </div>
-                   
+                    </div> 
                 </form>
-
-
-            </div>
         </div>
-        
-        <div class="col col-md-6 mb-2">
-            <div id="loan_info" class="border h-75">
-        
-                LOAN INFO
-                
-
-
-                </form>
-                
-            </div>
-           
+        <div id="loan_info" class="col col-md-6 mb-3">
+            <div>
+                <h1 class="display-5 pt-2 pb-2">Results
+                </h1>
+        <div class="form-group mt-1">
+            <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">Monthly Payment</span>
+            <input type="number" class="form-control" id="monthly-payment" disabled>
         </div>
-        
+    </div>
+    <div class="form-group mt-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">Total Payment</span>
+            <input type="number" class="form-control" id="total-payment" disabled>
+        </div> 
+        </div>       
     </div>    
     <div id="table_header" class="border row-12 h-25 m-1 mt-2">
         table header
     </div>
-    <div id="table" class="border row-12 m-1 row-cols-1 row-cols-md-2 mt-1">
+    <div id="table" class="border row-12">
         table
         l;;klj
     </div>

@@ -1,6 +1,6 @@
 :root{
-    --primary-color: #067edf;
-    --secondary-color: #0661f4;
+    --primary-color: #df6006;
+    --secondary-color: #f46106;
     --dark-color: #000;
     --white-color: #d8d8dd;
 }
@@ -44,6 +44,10 @@ h1,h2,h3,h4,h5,h6 {
 
 .cssicon{
     color: rgb(11,82,214)
+}
+
+.vv{
+    color:var(--primary-color) !important;
 }
 
 .checklist >li i{

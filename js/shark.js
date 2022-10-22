@@ -1,39 +1,61 @@
 // Button listen for submit
 document.getElementById('loan-form').addEventListener('submit', calculateResults)
+document.getElementById('loan-form').addEventListener('Clear', startOver)
 
+//Calculate Results
+function calculateResults(e){
+  console.log('Calculating...');
+  // Form variables
+  const amount = document.getElementById('amount');
+  const interest = document.getElementById('interest');
+  const years = document.getElementById('years');
+  const monthlyPayment = document.getElementById('monthly-payment');
+  const totalPayment = document.getElementById('total-payment');
+  const totalInterest = document.getElementById('total-interest');
+  const extraPayment = document.getElementById('extra')
 
-function startOver() {
+  const principal = parseFloat(amount.value);
+  const calculatedInterest = parseFloat(interest.value) / 100 / 12;
+  const calculatedPayments = parseFloat(years.value) * 12;
 
-  document.loan_form_amt.value="";
-  document.loan_form.months.value="";
-  document.loan_form.rate.value="";
-  document.loan_form.extra.value="";
+  //Compute monthly payment
+  const x = Math.pow(1+calculatedInterest, calculatedPayments);
+  const monthly = (principal * x * calculatedInterest)/(x-1);
 
-  document.getElementById("loan_info").innerHTML="";
-  document.getElementById("table").innerHtml="";
+  if(isFinite(monthly)){
+      monthlyPayment.value = monthly.toFixed(2);
+      totalPayment.value =(monthly * calculatedPayments).toFixed(2);
+      totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+  } else {
+      showError('Please check your numbers');
 
+  }
+  e.preventDefault();
 }
+// Show Error
+function showError(error){
+  // Creat a div
+  const errorDiv = document.createElement('div');
+
+  // Get elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
 
 
-function validate() {
+  // Add class
+  errorDiv.className = 'alert alert-danger';
 
-    const loan_amt = document.loan_form.loan_amt.value;
-    const months = document.loan_form.months.value;
-    const rate = document.loan_form.rate.value;
-    const extra = document.loan_form.extra.value;
+  // Create text node and append to div
+  errorDiv.appendChild(document.createTextNode(error));
 
-    parseFloat(loan_amt);
-    parseint(months);
-    parseFloat(rate);
-    parseFloat(extra);
+  // Insert error above heading
+  card.insertBefore(errorDiv, heading);
+
+  // Clear error after 3 seconds
+  setTimeout(clearError, 3000);
 }
+// Clear error function
 
-function calculate(loan_amt, months, rate, extra) {
-
-  i = rate/100;
-
-  let monthly_payment = amount*(i/12)*Math.pow((1+i/12),months) / (Math.pow((1+i/12), months) - 1);
-
-  alert(monthly_payment);
-
+function clearError(){
+  document.querySelector('.alert').remove();
 }

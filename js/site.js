@@ -7,14 +7,18 @@ function calculateResults(e){
     // Form variables
     const amount = document.getElementById('amount');
     const interest = document.getElementById('interest');
-    const years = document.getElementById('years');
+    const months = document.getElementById('months');
     const monthlyPayment = document.getElementById('monthly-payment');
     const totalPayment = document.getElementById('total-payment');
     const totalInterest = document.getElementById('total-interest');
+    
+
+    // parse the numbers
 
     const principal = parseFloat(amount.value);
     const calculatedInterest = parseFloat(interest.value) / 100 / 12;
-    const calculatedPayments = parseFloat(years.value) * 12;
+    const calculatedPayments = parseFloat(months.value);
+    
 
     //Compute monthly payment
     const x = Math.pow(1+calculatedInterest, calculatedPayments);
@@ -22,7 +26,7 @@ function calculateResults(e){
 
     if(isFinite(monthly)){
         monthlyPayment.value = monthly.toFixed(2);
-        totalPayment.value =(monthly * calculatedPayments).toFixed(2);
+        totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
     } else {
         showError('Please check your numbers');
@@ -31,6 +35,49 @@ function calculateResults(e){
     e.preventDefault();
 }
 
+
+/*
+function table(){
+    while (principal > 0) {
+        monthlyPayment +- 1;
+        amount*12
+    }
+}
+
+// CF * Loop over the array and create a tablerow for each item using template.
+
+
+function displayData(Array) {
+
+    //get the table body element from the page
+    let tablebody = document.getElementById("results");
+
+    //get the template row
+    let templateRow = document.getElementById("template");
+
+    //clear table first
+    tablebody.innerHTML = "";
+
+    for (let index = 0; index < Array.length; index++) {
+
+        let tableRow = document.importNode(templateRow.content, true)
+
+        //grab use the to put into array
+        let rowCols = tableRow.querySelectorAll("td");
+        rowCols[0].textContent = *Data*[i];
+        rowCols[1].textContent = *Data*[i+1];
+        rowCols[2].textContent = *Data*[i+2];
+        rowCols[3].textContent = *Data*[i+3];
+        rowCols[4].textContent = *Data*[i+4];
+        rowCols[5].textContent = *Data*[i+5];
+
+        tablebody.appendChild(tableRow);
+
+    }
+
+
+}
+*/
 // Show Error
 function showError(error){
     // Creat a div
