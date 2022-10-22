@@ -5,6 +5,14 @@
     --white-color: #d8d8dd;
 }
 
+table{ align:center; 
+       font-size: 13px; 
+
+}
+
+#table{
+    overflow: auto
+}
 
 footer{
     padding-right: .5rem;

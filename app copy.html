@@ -7,6 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!--javascript-->
+    <script type="text/javascript" src="js/shark.js"></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -45,10 +48,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="app.html">The App</a>
+                    <a class="nav-link active" aria-current="page" href="app.html">The App</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="code.html">The Code</a>
@@ -64,48 +67,76 @@
     </div>
 </nav>
 <!-- ==== Main Section ===== -->
-    <main class="flex-shrink-0">
-       <div class="container col-xxl-8 px-4 py-5">
-            <div class="row g-2 py-4 row-cols-1 row-cols-lg-2">
-                <div class="col order-last order-lg-first">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Loan Shark: A Coding Project</h1>
-                    <h4 class="lead">Live life one loop at a time. A Javascript coding exercise using loops. Write a 
-                    program that displays the numbers from 0 to 100. Display the even numbers in <strong>BOLD.</strong> 
-                    </h4>
-                    <ul class="fa-ul pt-2 checklist">
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>CSS and Bootstrap Layout</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript Fundamentals</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript Loops</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript Functions</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript Dom Manipulation</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript If/Then/Else</li>
-                    <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Javascript Boolean Logic</li>
-                    </ul>
-                    <div>
-                        <a type="button" class="btn btn-outline-dark btn-lg px-4 me-md-2" href="app.htm"> Try It Out!</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <img src="/img/LoanSharkLogo big.png" class="img-fluid center-block d-block mx-auto" alt="APP LOGO" 
-                        width="500" height="300">
-                </div>
-                <div>
-                    <h5 class="fw-bold order-last">
-                        <div class="d-flex">
-                            <div class="row">
-                                <div class="col"><i class="fab fa-brands fa-square-js fa-3x jsicon"></i></div>
-                                <div class="col"><i class="fab fa-bootstrap fa-3x bsicon"></i></div>
-                                <div class="col"><i class="fab fa-html5 fa-3x html5icon"></i></div>
-                                <div class="col"><i class="fab fa-css3-alt fa-3x css3icon"></i></div>
-                            </div>
-                        </div>
-                    </h5>
-                </div>
+<main class="flex-shrink-0">
+<div id="container" class="container border">
+    <div class="row gy-2 row-cols-1 row-cols-md-2">
+        <div class="col col-md-12">
+            <div class="text-center border ">
+                <h1>Loan Shark Calculator</h1>
             </div>
-       </div>
-    </main>
-<!-- ==== Footer Section ===== -->
-<footer class="footer sticky-footer mt-auto py-2 text-white bg-black">
+        </div>
+        <div class="col col-md-6 mb-3">
+            <div id="loan_src" class="border">
+                LOAN SRC
+                <form name="loan_form">
+                    <div class="row m-1">
+                        Loan Amount:  <input type="text" name="loan_amt">
+                    </div>
+                    <div class="row m-1">
+                        Number of Months <input type="text" name="months"></span>
+                    </div>
+                    <div class="row m-1">
+                        Annual Interest Rate:<br><span style="font-size:80%">(ex. 2.5% = 2.5)</span>  <input type="text" name="rate">
+                    </div>
+                    <div class="row m-1">
+                        Extra Monthly Payment:  <input type="text" name="extra">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" onclick="validate()" value="Calculate" class="btn btn-success mt-2 mb-2">Calculate</button>
+                            <div class="col-6">
+                                <button type="button" onclick="startOver()" value="Start Over" class="text-right btn btn-danger">Clear</button>
+                            </div> 
+                        </div>
+                    </div>
+                   
+                </form>
+
+
+            </div>
+        </div>
+        
+        <div class="col col-md-6 mb-2">
+            <div id="loan_info" class="border h-75">
+        
+                LOAN INFO
+                
+
+
+                </form>
+                
+            </div>
+           
+        </div>
+        
+    </div>    
+    <div id="table_header" class="border row-12 h-25 m-1 mt-2">
+        table header
+    </div>
+    <div id="table" class="border row-12 m-1 row-cols-1 row-cols-md-2 mt-1">
+        table
+        l;;klj
+    </div>
+</div>
+ 
+<!--Loader Here --><!--
+<div id="loading">
+<img src="img/loading.gif" alt="">
+</div>--> 
+</main>
+
+ <!-- ==== Footer Section ===== -->
+ <footer class="footer sticky-footer mt-auto py-2 text-white bg-black">
     <div class="container-fluid">
         <div class="row row-cols-1 row-cols-lg-3">
             <div class="col order-last order-lg-first text-white bg-black gy-2">
@@ -116,20 +147,22 @@
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                 <div class="row">
-                    <div class="col social"><a href="https://www.linkedin.com/in/caseyspaulding/"><i class="fab fa-linkedin fa-2x"></i></a></div>
-                    <div class="col social"><a href="http://www.github.com/caseyspaulding/"><i class="fab fa-github fa-2x"></i></a></div>
-                    <div class="col social"><a href="https://twitter.com/caseyspauldingg/"><i class="fab fa-twitter fa-2x"></i></a></div>
-                    <div class="col social"><a href="https://www.youtube.com/channel/UC5bLstR32GMs08BsNu_s5xg"><i class="fab fa-youtube fa-2x"></i></a></div>
+                    <div class="col social"><a href="https://www.linkedin.com/in/caseyspaulding/"><i class="fa-heart fab fa-linkedin fa-2x"></i></a></div>
+                    <div class="col social"><a href="http://www.github.com/caseyspaulding/"><i class="fa-heart fab fa-github fa-2x"></i></a></div>
+                    <div class="col social"><a href="https://twitter.com/caseyspauldingg/"><i class="fa-heart fab fa-twitter fa-2x"></i></a></div>
+                    <div class="col social"><a href="https://www.youtube.com/channel/UC5bLstR32GMs08BsNu_s5xg"><i class="fa-heart fab fa-youtube fa-2x"></i></a></div>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+ <!-- Bootstrap JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
 
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
+ integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+</script>
+<script src="js/shark.js"></script>
+
 
 
 </body>
