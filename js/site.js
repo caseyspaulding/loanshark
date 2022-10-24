@@ -6,51 +6,108 @@ function getValues(){
     let amount = document.getElementById('amount');
     let interest = document.getElementById('interest');
     let months = document.getElementById('months');
-    let monthlyPayment = document.getElementById('monthly-payment');
-    let totalPayment = document.getElementById('total-payment');
-    let totalInterest = document.getElementById('total-interest');
+    //let monthlyPayment = document.getElementById('monthly-payment');
+    //let totalPayment = document.getElementById('total-payment');
+    //let totalInterest = document.getElementById('total-interest');
     
-
     // parse the numbers
 
     let principal = parseFloat(amount.value);
-    let calculatedInterest = parseFloat(interest.value) / 100 / 12;
-    let calculatedPayments = parseFloat(months.value);
+    let cInterest = parseFloat(interest.value) / 100/ 12;
+    let cPayments = parseFloat(months.value);
+   
 
     //Compute monthly payment
-    let x = Math.pow(1+calculatedInterest, calculatedPayments);
-    let monthly = (principal * x * calculatedInterest)/(x-1);
+    let x = Math.pow(1+cInterest, cPayments);
+    let monthly = (principal * x * cInterest)/(x-1);
 
-    if(isFinite(monthly)){
-        monthlyPayment.value = monthly.toFixed(2);
-        totalPayment.value = (monthly * calculatedPayments).toFixed(2);
-        totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
-    } else {
-        alert('Please check your numbers');
+        calculate(principal, cPayments, cInterest, monthly)
+    }
+
+
+function calculate(principal, cPayments, cInterest){
+
+    //Compute monthly payment
+    let x = Math.pow(1+cInterest, cPayments);
+    let monthly = (principal * x * cInterest)/(x-1);
+    let total_payments = (monthly * cPayments).toFixed(2);
+    let total_interest_sum = ((monthly * cPayments)-principal).toFixed(2);
+
+    let info="";
+
+    info += "<table class='table table-striped table-sm'>";
+    info += "<tr><td>Loan Amount:</td>";
+    info += "<td align='right'>"+principal+"</td></tr>";
+
+    info += "<tr><td>Monthly Payment:</td>";
+    info += "<td align='right'>"+round(monthly,2)+"</td></tr>";
+
+    info += "<tr><td>Total Payments:</td>";
+    info += "<td align='right'>"+round(total_payments,2)+"</td></tr>";
+
+    info += "<tr><td>Total Interest Paid:</td>";
+    info += "<td align='right'>"+total_interest_sum+"</td></tr>";
+
+    info += "<tr><td>Payments:</td>";
+    info += "<td align='right'>"+cPayments+"</td></tr>";
+
+    info += "</table>";
+
+    //info is a string containing all the html table code
+    document.getElementById("loan_info").innerHTML = info; 
+   
+    // TABLE DATA
+
+    let table="";
+
+    table += "<table class='table table-striped table-sm'>";
+
+    
+    let current_balance = parseFloat(principal);
+    let payment_counter = 1;
+    let total_interest = parseFloat(cInterest);
+    let monthly_payment = monthly;
+
+    while(current_balance > 0) {
+        parseFloat(current_balance)
+        let = towards_interest = cInterest * current_balance;
+       
+        if( monthly_payment > current_balance){
+            monthly_payment = current_balance + towards_interest;
+        }
+
+
+        let towards_balance = monthly_payment - towards_interest;
+        let total_interest = total_interest + towards_interest;
+        let current_balance = current_balance - towards_balance; //this calculates the portion
+
+        table += "<tr>";
+            table += "<td>"+payment_counter+"</td>"
+            table += "<td>"+round(monthly_payment,2)+"</td>"
+            table += "<td>"+round(towards_balance,2)+"</td>"
+            table += "<td>"+round(towards_interest,2)+"</td>"
+            table += "<td>"+round(total_interest,2)+"</td>"
+            table += "<td>"+round(current_balance,2)+"</td>"
+        table += "</tr>";
+
+        payment_counter++;
 
     }
 
-    
-
+document.getElementById("table").innerHTML = table;
 
 }
 
+function round(num, dec){
 
-function table(principal, calculatedInterest, calculatedPayments, months){
-    let returnArray = [];
+    return (Math.round(num*Math.pow(10,dec))/ Math.pow(10,dec)).toFixed(dec);
+}
 
 
-    /*var result = "Loan amount: $" + amount.toFixed(2) +  "<br />" + 
-        "Interest rate: " + (interest*100).toFixed(2) +  "%<br />" +
-        "Number of months: " + months + "<br />" +
-        "Monthly payment: $" + monthly.toFixed(2) + "<br />" +
-        "Total paid: $" + (payment * months).toFixed(2) + "<br /><br />";
 
-    results += "<table border='1'><tr><th>Month #</th><th>Balance</th>" + 
-        "<th>Interest</th><th>Principal</th>";
-*/
-    
-    //Loop 360 times
+
+/*   
+//Loop 360 times
     for (let i = 0; i < months; i++) {
         
         let interest = 0;
@@ -69,10 +126,9 @@ function table(principal, calculatedInterest, calculatedPayments, months){
     }
     returnArray;
 }
-
+*/
+/*
 // CF * Loop over the array and create a tablerow for each item using template.
-
-
 function displayData(tbArray) {
 
     //get the table body element from the page
@@ -101,8 +157,8 @@ function displayData(tbArray) {
 
     }
 
+*/
 
-}
 // Show Error
 function showError(error){
     // Creat a div
