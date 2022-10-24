@@ -1,5 +1,5 @@
-// Button listen for submit
-//Calculate Results
+
+//Get info from page. Calculate Results
 function getValues(){
     console.log('Calculating...');
     // Form variables
