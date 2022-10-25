@@ -35,20 +35,21 @@ function calculate(principal, cPayments, cInterest){
     let info="";
 
     info += "<table class='table table-striped table-sm'>";
-    info += "<tr><td>Loan Amount:</td>";
-    info += "<td align='right'>"+principal+"</td></tr>";
 
-    info += "<tr><td>Monthly Payment:</td>";
-    info += "<td align='right'>"+round(monthly,2)+"</td></tr>";
+    info += "<tr><td><h2>Monthly Payment:</h2></td>";
+    info += "<td align='right'><h2>$"+round(monthly,2)+"</h2></td></tr>";
+
+    info += "<tr><td>Loan Amount:</td>";
+    info += "<td align='right'>$"+principal+"</td></tr>";
 
     info += "<tr><td>Total Payments:</td>";
-    info += "<td align='right'>"+round(total_payments,2)+"</td></tr>";
+    info += "<td align='right'>$"+round(total_payments,2)+"</td></tr>";
 
     info += "<tr><td>Total Interest Paid:</td>";
-    info += "<td align='right'>"+total_interest_sum+"</td></tr>";
+    info += "<td align='right'>$"+total_interest_sum+"</td></tr>";
 
     info += "<tr><td>Payments:</td>";
-    info += "<td align='right'>"+cPayments+"</td></tr>";
+    info += "<td align='right'>$"+cPayments+"</td></tr>";
 
     info += "</table>";
 
@@ -60,6 +61,15 @@ function calculate(principal, cPayments, cInterest){
     let table="";
 
     table += "<table class='table table-striped table-sm'>";
+
+        table += "<tr>";
+        table += " <td width='30'>Month</td>";
+        table += "<td width='30'>Payment</td>";
+        table += "<td width='30'>Principle</td>";
+        table += " <td width='30'>Interest</td>";
+        table += "<td width='30'>Interest Paid</td>";
+        table += "<td width='30'>Balance</td>";
+        table += "</tr>";
 
     let current_balance = parseFloat(document.getElementById('amount').value);
     let interest = parseFloat(document.getElementById('interest').value);
