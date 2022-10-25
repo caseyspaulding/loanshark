@@ -106,60 +106,6 @@ function round(num, dec){
 
 
 
-
-/*   
-//Loop 360 times
-    for (let i = 0; i < months; i++) {
-        
-        let interest = 0;
-        let monthlyPrincipal = 0;
-
-        if(principal > 0){
-            let calculatedPrincipal = calculatedPayments - principal;
-            returnArray.push(calculatedPrincipal);
-            returnArray.push(calculatedPayments);
-            returnArray.push(calculatedInterest);
-            returnArray.push(calculatedPrincipal);
-
-        }else{
-            returnArray.push(i);
-        }
-    }
-    returnArray;
-}
-*/
-/*
-// CF * Loop over the array and create a tablerow for each item using template.
-function displayData(tbArray) {
-
-    //get the table body element from the page
-    let tablebody = document.getElementById("results");
-
-    //get the template row
-    let templateRow = document.getElementById("template");
-
-    //clear table first
-    tablebody.innerHTML = "";
-
-    for (let index = 0; index < tbArray.length; index += 6) {
-
-        let tableRow = document.importNode(templateRow.content, true)
-
-        //grab use the to put into array
-        let rowCols = tableRow.querySelectorAll("td");
-        rowCols[0].textContent = tbData[i];
-        rowCols[1].textContent = tbData*[i+1];
-        rowCols[2].textContent = tbData*[i+2];
-        rowCols[3].textContent = tbData*[i+3];
-        rowCols[4].textContent = tbData*[i+4];
-        rowCols[5].textContent = tbData*[i+5];
-
-        tablebody.appendChild(tableRow);
-
-    }
-
-*/
-
 // Show Error
 function showError(error){
     // Creat a div
@@ -183,4 +129,4 @@ function showError(error){
     setTimeout(clearError, 3000);
 }
 
-// Clea error function
+
