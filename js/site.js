@@ -1,5 +1,6 @@
 
 //Get info from page. Calculate Results
+let cPayments = parseFloat(months.value);
 function getValues(){
     console.log('Calculating...');
     // Form variables
@@ -18,10 +19,8 @@ function getValues(){
    
 
     //Compute monthly payment
-    let x = Math.pow(1+cInterest, cPayments);
-    let monthly = (principal * x * cInterest)/(x-1);
-
-        calculate(principal, cPayments, cInterest, monthly)
+    
+        calculate(principal, cPayments, cInterest)
     }
 
 
@@ -62,40 +61,32 @@ function calculate(principal, cPayments, cInterest){
 
     table += "<table class='table table-striped table-sm'>";
 
-    
-    let current_balance = parseFloat(principal);
+    let current_balance = parseFloat(document.getElementById('amount').value);
+    let interest = parseFloat(document.getElementById('interest').value);
+    let monthly_payment = monthly
     let payment_counter = 1;
     let total_interest = parseFloat(cInterest);
-    let monthly_payment = monthly;
-
-    while(current_balance > 0) {
-        parseFloat(current_balance)
-        let = towards_interest = cInterest * current_balance;
-       
-        if( monthly_payment > current_balance){
-            monthly_payment = current_balance + towards_interest;
-        }
-
-
-        let towards_balance = monthly_payment - towards_interest;
-        let total_interest = total_interest + towards_interest;
-        let current_balance = current_balance - towards_balance; //this calculates the portion
-
+    while (payment_counter <= cPayments) {
+        towards_interest = cInterest * current_balance;
+        towards_balance = monthly_payment - towards_interest;
+        total_interest = total_interest + towards_interest; 
+        current_balance = current_balance - towards_balance;
+        
+        
         table += "<tr>";
             table += "<td>"+payment_counter+"</td>"
-            table += "<td>"+round(monthly_payment,2)+"</td>"
-            table += "<td>"+round(towards_balance,2)+"</td>"
-            table += "<td>"+round(towards_interest,2)+"</td>"
-            table += "<td>"+round(total_interest,2)+"</td>"
-            table += "<td>"+round(current_balance,2)+"</td>"
+            table += "<td>"+round (monthly_payment,2)+"</td>"
+            table += "<td>"+round (towards_balance,2)+"</td>"
+            table += "<td>"+round (towards_interest,2)+"</td>"
+            table += "<td>"+round (total_interest,2)+"</td>"
+            table += "<td>"+round (current_balance,2)+"</td>"
         table += "</tr>";
-
         payment_counter++;
-
+ 
     }
+    table +="</table>";
 
-document.getElementById("table").innerHTML = table;
-
+    document.getElementById("tablehtml").innerHTML = table;
 }
 
 function round(num, dec){
@@ -182,8 +173,4 @@ function showError(error){
     setTimeout(clearError, 3000);
 }
 
-// Clear error function
-
-function clearError(){
-    document.querySelector('.alert').remove();
-}
+// Clea error function
