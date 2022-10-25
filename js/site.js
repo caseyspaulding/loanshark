@@ -63,12 +63,12 @@ function calculate(principal, cPayments, cInterest){
     table += "<table class='table table-striped table-sm'>";
 
         table += "<tr>";
-        table += " <td width='30'>Month</td>";
-        table += "<td width='30'>Payment</td>";
-        table += "<td width='30'>Principle</td>";
-        table += " <td width='30'>Interest</td>";
-        table += "<td width='30'>Interest Paid</td>";
-        table += "<td width='30'>Balance</td>";
+        table += " <td width='30'><strong>Month</strong></td>";
+        table += "<td width='30'><strong>Payment</strong></td>";
+        table += "<td width='30'><strong>Principle</strong></td>";
+        table += " <td width='30'><strong>Interest</strong></td>";
+        table += "<td width='30'><strong>Interest Paid</strong></td>";
+        table += "<td width='30'><strong>Balance</strong></td>";
         table += "</tr>";
 
     let current_balance = parseFloat(document.getElementById('amount').value);
