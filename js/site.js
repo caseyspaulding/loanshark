@@ -40,9 +40,8 @@ function calculate(principal, cPayments, cInterest){
     let info="";
 
     info += "<table class='table table-striped table-sm'>";
-
-    info += "<tr><td><h2>Monthly Payment:</h2></td>";
-    info += "<td align='right'><h2>"+fmonthly+"</h2></td></tr>";
+    
+    info += "<tr><th colspan='2' style='text-align:center;'><h2>"+fmonthly+"</h2></th></tr>";
 
     info += "<tr><td>Loan Amount:</td>";
     info += "<td align='right'>"+fprincipal+"</td></tr>";
