@@ -32,21 +32,31 @@ function calculate(principal, cPayments, cInterest){
     let total_payments = (monthly * cPayments).toFixed(2);
     let total_interest_sum = ((monthly * cPayments)-principal).toFixed(2);
 
+    let formatCurrency = new Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: 'USD'
+    });
+    let fmonthly = formatCurrency.format(monthly);
+    let fprincipal = formatCurrency.format(principal);
+    let ftotal_payments = formatCurrency.format(total_payments);
+    let ftotal_interest_sum = formatCurrency.format(total_interest_sum);
+    
+
     let info="";
 
     info += "<table class='table table-striped table-sm'>";
 
     info += "<tr><td><h2>Monthly Payment:</h2></td>";
-    info += "<td align='right'><h2>$"+round(monthly,2)+"</h2></td></tr>";
+    info += "<td align='right'><h2>"+fmonthly+"</h2></td></tr>";
 
     info += "<tr><td>Loan Amount:</td>";
-    info += "<td align='right'>$"+principal+"</td></tr>";
+    info += "<td align='right'>"+fprincipal+"</td></tr>";
 
     info += "<tr><td>Total Payments:</td>";
-    info += "<td align='right'>$"+round(total_payments,2)+"</td></tr>";
+    info += "<td align='right'>"+ftotal_payments+"</td></tr>";
 
     info += "<tr><td>Total Interest Paid:</td>";
-    info += "<td align='right'>$"+total_interest_sum+"</td></tr>";
+    info += "<td align='right'>"+ftotal_interest_sum+"</td></tr>";
 
     info += "<tr><td>Payments:</td>";
     info += "<td align='right'>"+cPayments+"</td></tr>";
