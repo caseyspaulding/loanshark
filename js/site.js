@@ -49,7 +49,7 @@ function calculate(principal, cPayments, cInterest){
     info += "<td align='right'>$"+total_interest_sum+"</td></tr>";
 
     info += "<tr><td>Payments:</td>";
-    info += "<td align='right'>$"+cPayments+"</td></tr>";
+    info += "<td align='right'>"+cPayments+"</td></tr>";
 
     info += "</table>";
 
