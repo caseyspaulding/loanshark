@@ -1,32 +1,27 @@
+//Get info from the user. Calculate Results
 
-//Get info from page. Calculate Results
 let cPayments = parseFloat(months.value);
 function getValues(){
+
     console.log('Calculating...');
     // Form variables
     let amount = document.getElementById('amount');
     let interest = document.getElementById('interest');
     let months = document.getElementById('months');
-    //let monthlyPayment = document.getElementById('monthly-payment');
-    //let totalPayment = document.getElementById('total-payment');
-    //let totalInterest = document.getElementById('total-interest');
     
     // parse the numbers
-
     let principal = parseFloat(amount.value);
     let cInterest = parseFloat(interest.value) / 100/ 12;
     let cPayments = parseFloat(months.value);
    
-
-    //Compute monthly payment
-    
+    //Compute monthly payment with calculate function - Casey Spaulding
         calculate(principal, cPayments, cInterest)
     }
 
 
 function calculate(principal, cPayments, cInterest){
 
-    //Compute monthly payment
+    //Compute monthly payment, interest, etc 
     let x = Math.pow(1+cInterest, cPayments);
     let monthly = (principal * x * cInterest)/(x-1);
     let total_payments = (monthly * cPayments).toFixed(2);
