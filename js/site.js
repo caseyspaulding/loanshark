@@ -84,6 +84,7 @@ function calculate(principal, cPayments, cInterest){
     let current_balance = parseFloat(document.getElementById('amount').value);
     let interest = parseFloat(document.getElementById('interest').value);
     let monthly_payment = monthly
+  
     let payment_counter = 1;
     let total_interest = parseFloat(cInterest);
     while (payment_counter <= cPayments) {
@@ -91,15 +92,21 @@ function calculate(principal, cPayments, cInterest){
         towards_balance = monthly_payment - towards_interest;
         total_interest = total_interest + towards_interest; 
         current_balance = current_balance - towards_balance;
+
+        let ftowards_interest = formatCurrency.format(towards_interest);
+        let ftowards_balance = formatCurrency.format(towards_balance);
+        let ftotal_interest = formatCurrency.format(total_interest);
+        let fcurrent_balance = formatCurrency.format(current_balance);
+        let fmonthly_payment = formatCurrency.format(monthly_payment);
         
         
         table += "<tr>";
             table += "<td>"+payment_counter+"</td>"
-            table += "<td>"+round (monthly_payment,2)+"</td>"
-            table += "<td>"+round (towards_balance,2)+"</td>"
-            table += "<td>"+round (towards_interest,2)+"</td>"
-            table += "<td>"+round (total_interest,2)+"</td>"
-            table += "<td>"+round (current_balance,2)+"</td>"
+            table += "<td>"+fmonthly_payment+"</td>"
+            table += "<td>"+ftowards_balance+"</td>"
+            table += "<td>"+ftowards_interest+"</td>"
+            table += "<td>"+ftotal_interest+"</td>"
+            table += "<td>"+fcurrent_balance+"</td>"
         table += "</tr>";
         payment_counter++;
  
